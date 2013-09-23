@@ -3,15 +3,18 @@ function saknis = pusiaukirtosmetodas(func,x1,x2,filter,tol)
 % IVEDIMO PARAMETRAI:
 % filter = singuliarumo filtras: 0 = iðjungta (pagal nutylejima), 1 = ijungta.
 % tol = paklaida (pagal nutylejima 0.0001).
+%
 if nargin < 5; tol = 0.0001; end
 if nargin < 4; filter = 0; end
+%
 f1 = func(x1);
 if f1 == 0.0; saknis = x1; return; end
 f2 = func(x2);
 if f2 == 0.0; saknis = x2; return; end
 if f1*f2 > 0;
-error('Nurodytame intervale (x1,x2) nera funkcijos nulio')
+    error('Nurodytame intervale (x1,x2) nera funkcijos nulio')
 end
+%
 n = ceil(log2(abs(x2 - x1)/tol));
 for i = 1:n
     x3 = 0.5*(x1 + x2);
